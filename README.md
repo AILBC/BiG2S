@@ -37,10 +37,9 @@ Then run the data preprocessing program by
 ```
 python Data_preprocessing.py
 ```
-Please replace the `args.dataset_name` at the end of the code with the corresponding dataset name in advance(`uspto_50k` is the default, you can choose `uspto_full` or `uspto_MIT`. Please ensure the `args.split_preprocess` is set to `True` when choosing `uspto_full` or `uspto_MIT` for more efficient evaluation
-during training).
+Please replace the `args.dataset_name` at the end of the code with the corresponding dataset name in advance(`uspto_50k` is the default, you can choose `uspto_full` or `uspto_MIT`. Please ensure the `args.split_preprocess` is set to `True` when choosing `uspto_full` or `uspto_MIT` for more efficient evaluation during training).
 
-The datasets mentioned above will be uploaded later for a more convenient data acquirement.
+Additionally, we provide the download link for the three datasets mentioned above, you can download them manually at: https://www.dropbox.com/sh/aa41sxlte7wngiv/AADWe3XEg2C1wBbfz3lktyjFa?dl=0
 
 ## 3. Training and validation during training
 We provide the hyperparameter settings in `args_settings/`.
@@ -51,12 +50,22 @@ Choose and copy the settings corresponding to the dataset and paste them into th
 python Module_training.py
 ```
 
+You can find the training log and checkpoints at `model/check_point`.
+
 The automatic weight averaging is available in our model, which can automatically generate weight average models based on weighted accuracy on the validation set. You can acquire multiple weight average models from the different training steps of the model after it has been trained, as well as the original models and the accuracy of each model. Use this information to quickly select the best model checkpoint for subsequent evaluation.
 
 ## 4. Evaluation for one-step reaction predicting
 We also provide the evaluation hyperparameter settings in `args_settings/`.
 
-Choose and copy the settings corresponding to the dataset and paste them into the end of the evaling script `Module_evaling.py` to replace the default args setting. Please replace `args.ckpt_list` with the checkpoint file name if you choose other checkpoints for evaluation.
+For the model checkpoints for each datasets, you can download them manually at: https://www.dropbox.com/sh/uekt2uacoawz81g/AABIc4w-pQAWxiYk4geSgMBpa?dl=0, each of the checkpoint need to
+be pasted into `model/check_point`.
+
+Choose and copy the settings corresponding to the dataset and paste them into the end of the evaling script `Module_evaling.py` to replace the default args setting. Please replace `args.ckpt_list` with the checkpoint file name you have selected. For example, if you choose the checkpoint `model/check_point/50k/ckpt1.ckpt`, the args settings are as follows:
+
+```
+args.save_name = '50k'
+args.ckpt_list = ['ckpt1']
+```
 
 We construct a new beam search method based on **huggingface**(https://github.com/huggingface/transformers), which can provide better top-n prediction quality but takes more search time, and we further improve its search speed and enable it to support group beam search and results reordering with additional latent variables. You can also use **OpenNMT**(https://github.com/OpenNMT/OpenNMT) for beam search by adding `args.beam_module = 'OpenNMT'` in `Module_evaling.py`. For more details about the beam search algorithms, please check the code in `model/inference`
 
