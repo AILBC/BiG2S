@@ -1,0 +1,35 @@
+training:
+args.save_name = 'full'
+args.dataset_name = 'uspto_full'
+args.accum_count = 2
+args.use_subs = True
+args.use_reaction_type = False
+args.decoder_cls = True
+args.save_strategy = 'mean'
+args.epochs = 100
+args.save_epoch = [_ for _ in range(19, args.epochs, 1)] + [args.epochs]
+args.batch_size = 64
+args.token_limit = 12000
+args.memory_clear_count = 4
+args.lr = 1.25
+args.dropout = 0.1
+args.train_task = 'bidirection'
+args.eval_task = 'prod2subs'
+args.use_splited_data = True
+args.split_data_name = 'split_10000'
+
+evaluation:
+args.save_name = 'full'
+args.dataset_name = 'uspto_full'
+args.mode = 'test'
+args.use_subs = True
+args.use_reaction_type = False
+args.decoder_cls = True
+args.ckpt_list = ['full']
+args.beam_module = 'huggingface'
+args.batch_size = 64
+args.token_limit = 12000
+args.beam_size = 20
+args.T = 0.7
+args.eval_task = 'prod2subs'
+args.max_len = 512
