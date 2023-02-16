@@ -62,10 +62,10 @@ def main(args):
 if __name__ == '__main__':
     parser = get_parser(mode='preprocess')
     args = parser.parse_args()
-    args.raw_csv_preprocess = True
-    args.graph_preprocess = True
-    args.split_preprocess = False #please enable it when training on USPTO-MIT and USPTO-full for more efficient evaluation  
-    args.split_len = 10000
-    args.dataset_name = 'uspto_50k'
+    # args.raw_csv_preprocess = True
+    # args.graph_preprocess = True
+    # args.split_preprocess = False #please enable it when training on USPTO-MIT and USPTO-full for more efficient evaluation  
+    # args.split_len = 10000
+    # args.dataset_name = 'uspto_50k'
 
     main(args)

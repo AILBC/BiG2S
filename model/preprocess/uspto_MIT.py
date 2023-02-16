@@ -4,7 +4,7 @@ from tqdm import tqdm
 
 from .dataset_basic import Dataset, DATA_DIR, RAW_DATA_DIR
 from .smiles_tools import canonicalize_smiles, token_preprocess, char_preprocess
-
+from .download_data import download
 
 class uspto_MIT(Dataset):
     def __init__(self):
@@ -44,9 +44,12 @@ class uspto_MIT(Dataset):
         for data_split_type, filename, data_store in (('train', 'train.txt', train), ('eval', 'valid.txt', eval), ('test', 'test.txt', test)):
             data_path = os.path.join(RAW_DATA_DIR, f'uspto_MIT/{filename}')
             if not os.path.exists(data_path):
-                raise FileNotFoundError(
-                    f'raw data file is not exist in {data_path}. Please download from  Molecular Transformer and extract to required location.'
-                )
+                if not os.path.exists(data_path):
+                    download(
+                        url='https://www.dropbox.com/scl/fo/sd7rzl9tc93akjubd7kg1/h?dl=0&rlkey=0c36a844yjsgclfxe7agt8ejq',
+                        save_dir=os.path.join(RAW_DATA_DIR, 'uspto_MIT'),
+                        file_name='data.zip'
+                    )
             raw_data = open(data_path, 'r')
 
             for reaction_smile in tqdm(raw_data, desc=f'split {filename} SMILES...'):

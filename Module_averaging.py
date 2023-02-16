@@ -32,9 +32,9 @@ def averaging(args):
 if __name__ == '__main__':
     parser = get_parser(mode='swa')
     args = parser.parse_args()
-    args.save_name = ''
-    args.average_list = []
-    args.average_name = 'swa'
+    # args.save_name = ''
+    # args.average_list = []
+    # args.average_name = 'swa'
 
     set_seed(args.seed)
     averaging(args)

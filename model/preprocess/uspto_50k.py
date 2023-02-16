@@ -4,7 +4,7 @@ from tqdm import tqdm
 
 from .dataset_basic import Dataset, DATA_DIR, RAW_DATA_DIR
 from .smiles_tools import canonicalize_smiles, token_preprocess, char_preprocess
-
+from .download_data import download
 
 class uspto50k(Dataset):
     def __init__(self):
@@ -44,8 +44,10 @@ class uspto50k(Dataset):
         for data_split_type, filename, data_store in (('train', 'raw_train.csv', train), ('eval', 'raw_val.csv', eval), ('test', 'raw_test.csv', test)):
             data_path = os.path.join(RAW_DATA_DIR, f'uspto_50k/{filename}')
             if not os.path.exists(data_path):
-                raise FileNotFoundError(
-                    f'raw data file is not exist in {data_path}. Please download from GLN source code and extract to required location.'
+                download(
+                    url='https://www.dropbox.com/scl/fo/bpi5lqgswiy6mwavjf782/h?dl=0&rlkey=189kwhni39ms89jq2ex19x5sb',
+                    save_dir=os.path.join(RAW_DATA_DIR, 'uspto_50k'),
+                    file_name='data.zip'
                 )
             raw_data = pd.read_csv(data_path)
 

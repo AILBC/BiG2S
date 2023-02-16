@@ -112,20 +112,20 @@ def evaling(args):
 if __name__ == '__main__':
     parser = get_parser(mode = 'eval')
     args = parser.parse_args()
-    args.dataset_name = 'uspto_50k'
-    args.save_name = '50k'
-    args.mode = 'test'
-    args.use_subs = True
-    args.use_reaction_type = False
-    args.decoder_cls = True
-    args.ckpt_list = ['50k']
-    args.beam_module = 'huggingface'
-    args.batch_size = 128
-    args.token_limit = 0
-    args.beam_size = 20
-    args.T = 1.6
-    args.eval_task = 'prod2subs'
-    args.max_len = 512
+    # args.dataset_name = 'uspto_50k'
+    # args.save_name = '50k'
+    # args.mode = 'test'
+    # args.use_subs = True
+    # args.use_reaction_type = False
+    # args.decoder_cls = True
+    # args.ckpt_list = ['50k']
+    # args.beam_module = 'huggingface'
+    # args.batch_size = 128
+    # args.token_limit = 0
+    # args.beam_size = 20
+    # args.T = 1.6
+    # args.eval_task = 'prod2subs'
+    # args.max_len = 512
 
     set_seed(args.seed)
     evaling(args)

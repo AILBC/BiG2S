@@ -3,6 +3,7 @@ import pandas as pd
 from tqdm import tqdm
 
 from .dataset_basic import Dataset, DATA_DIR, RAW_DATA_DIR
+from .download_data import download
 
 class uspto_full(Dataset):
     def __init__(self):
@@ -43,9 +44,11 @@ class uspto_full(Dataset):
             prod_path, subs_path = os.path.join(RAW_DATA_DIR, f'uspto_full/src-{data_split_type}.txt'),\
                 os.path.join(RAW_DATA_DIR, f'uspto_full/tgt-{data_split_type}.txt')
             if not (os.path.exists(prod_path) and os.path.exists(subs_path)):
-                raise FileNotFoundError(
-                    f'raw data type {data_split_type} file is not exist. Please download from Graph2SMILES source code and extract to required location.'
-                )
+                download(
+                        url='https://www.dropbox.com/scl/fo/ncumdo43tc7d7gdrobug1/h?dl=0&rlkey=yfzpyyzomh2ae319uwkoas0yr',
+                        save_dir=os.path.join(RAW_DATA_DIR, 'uspto_full'),
+                        file_name='data.zip'
+                    )
             prod_data, subs_data = open(prod_path, 'r'), open(subs_path, 'r')
 
             for (prod_smi, subs_smi) in tqdm(zip(prod_data, subs_data), desc=f'split uspto_full {data_split_type} SMILES...'):

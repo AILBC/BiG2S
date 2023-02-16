@@ -191,27 +191,32 @@ class one_step_analysis():
 
 if __name__ == '__main__':
     parser = get_parser(mode = 'eval')
-    args = parser.parse_args()
-    tgt_dir = 'one_step_tgt.txt'
-    tgt_name = 'one_step_tgt'
-    vocab_dir = 'vocab_full.txt'
-    module_dir = 'full.ckpt'
+    parser.add_argument('--tgt_dir', help='The path of the txt file containing the molecular SMILES to be predicted and its dual-task label', type=str)
+    parser.add_argument('--tgt_name', help='The path of the results output folder', type=str)
+    parser.add_argument('--vocab_dir', help='The path of the tokenizer vocabulary', type=str)
+    parser.add_argument('--module_dir', help='The path of the model checkpoint', type=str)
 
-    args.use_reaction_type = False
-    args.beam_module = 'huggingface'
-    args.beam_size = 20
-    args.max_len = 512
-    args.T = 0.8
+    args = parser.parse_args()
+    # tgt_dir = 'one_step_tgt.txt'
+    # tgt_name = 'one_step_tgt'
+    # vocab_dir = 'vocab_full.txt'
+    # module_dir = 'full.ckpt'
+
+    # args.use_reaction_type = False
+    # args.beam_module = 'huggingface'
+    # args.beam_size = 20
+    # args.max_len = 512
+    # args.T = 0.8
 
     set_seed(args.seed)
     one_step_predict = one_step_analysis(
         args=args,
-        vocab_dir=vocab_dir,
-        module_dir=module_dir
+        vocab_dir=args.vocab_dir,
+        module_dir=args.module_dir
     )
     one_step_predict.predict(
-        tgt_dir=tgt_dir,
-        tgt_name=tgt_name,
+        tgt_dir=args.tgt_dir,
+        tgt_name=args.tgt_name,
         args=args,
         plot_num=10
     )

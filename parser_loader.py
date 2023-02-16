@@ -1,8 +1,9 @@
 import argparse
 
-def get_parser(mode='train'):
+def get_parser(mode='train', parser=None):
     assert mode in ['train', 'eval', 'test', 'swa', 'preprocess']
-    parser = argparse.ArgumentParser(description = mode)
+    if parser == None:
+        parser = argparse.ArgumentParser(description = mode)
     get_common_args(parser)
     if mode != 'preprocess':
         get_module_args(parser)

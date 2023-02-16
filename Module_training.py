@@ -335,24 +335,24 @@ def training(args):
 if __name__ == '__main__':
     parser = get_parser(mode = 'train')
     args = parser.parse_args()
-    args.save_name = '50k'
-    args.dataset_name = 'uspto_50k'
-    args.accum_count = 2
-    args.use_subs = True
-    args.use_reaction_type = False
-    args.decoder_cls = True
-    args.save_strategy = 'mean'
-    args.epochs = 700
-    args.save_epoch = [_ for _ in range(154, args.epochs, 5)] + [args.epochs]
-    args.batch_size = 32
-    args.token_limit = 0
-    args.memory_clear_count = 1
-    args.lr = 1
-    args.dropout = 0.3
-    args.train_task = 'bidirection'
-    args.eval_task = 'prod2subs'
-    args.use_splited_data = False
-    args.split_data_name = 'split_10000'
+    # args.save_name = '50k'
+    # args.dataset_name = 'uspto_50k'
+    # args.accum_count = 2
+    # args.use_subs = True
+    # args.use_reaction_type = False
+    # args.decoder_cls = True
+    # args.save_strategy = 'mean'
+    # args.epochs = 700
+    # args.save_epoch = [_ for _ in range(154, args.epochs, 5)] + [args.epochs]
+    # args.batch_size = 32
+    # args.token_limit = 0
+    # args.memory_clear_count = 1
+    # args.lr = 1
+    # args.dropout = 0.3
+    # args.train_task = 'bidirection'
+    # args.eval_task = 'prod2subs'
+    # args.use_splited_data = False
+    # args.split_data_name = 'split_10000'
 
     set_seed(args.seed)
     training(args)
