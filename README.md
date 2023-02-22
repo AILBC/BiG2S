@@ -1,6 +1,6 @@
-# BiG2S: A Dual Task Graph-to-Sequence Model for the End-to-End Template-Free Reaction Predicting
+# BiG2S: A Dual Task Graph-to-Sequence Model for the End-to-End Template-Free Reaction Prediction
 
-Here is the code for *"BiG2S: A Dual Task Graph-to-Sequence Model for the End-to-End Template-Free Reaction Predicting"*
+Here is the code for *"BiG2S: A Dual Task Graph-to-Sequence Model for the End-to-End Template-Free Reaction Prediction"*
 
 ***The manuscript is under submission now, please cite this page if you find our work is helpful***
 
@@ -119,7 +119,7 @@ You can find the training log and checkpoints at `model/check_point/$DATASET$`.
 
 The automatic weight averaging is available in our model, which can automatically generate weight average models based on weighted accuracy on the validation set. You can acquire multiple weight average models from the different training steps of the model after it has been trained, as well as the original models and the accuracy of each model. Use this information to quickly select the best model checkpoint for subsequent evaluation.
 
-## 5. Evaluation for one-step reaction predicting
+## 5. Evaluation for one-step reaction prediction
 We also provide the evaluation hyperparameter settings in `args_settings/`, or you can run the following scripts to evaluate the model in each dataset:
 
 ```
