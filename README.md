@@ -1,8 +1,6 @@
 # BiG2S: A Dual Task Graph-to-Sequence Model for the End-to-End Template-Free Reaction Prediction
 
-Here is the code for *"BiG2S: A Dual Task Graph-to-Sequence Model for the End-to-End Template-Free Reaction Prediction"*
-
-***The manuscript is under submission now, please cite this page if you find our work is helpful***
+Here is the code for *"BiG2S: A Dual Task Graph-to-Sequence Model for the End-to-End Template-Free Reaction Prediction"* in Applied Intelligence(APIN)
 
 ## 1. Overview
 The overview of the directory is shown as:
